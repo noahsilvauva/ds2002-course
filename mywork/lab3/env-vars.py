@@ -7,7 +7,7 @@ os.environ["FIRST_NAME"] = input('What is your first name? ')
 os.environ["MIDDLE_NAME"] = input('What is your middle name? ')
 os.environ["LAST_NAME"] = input('What is your last name? ')
 
-# Fetch the environment variables
+# Fetch all of the environment variables
 FIRST_NAME_ENV = os.getenv("FIRST_NAME")
 MIDDLE_NAME_ENV = os.getenv("MIDDLE_NAME")
 LAST_NAME_ENV = os.getenv("LAST_NAME")
