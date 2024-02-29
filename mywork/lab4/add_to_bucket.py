@@ -1,10 +1,10 @@
-#!/c/Users/nsilv/anaconda3/python.exe
+#!/usr/bin/env python3
 
 import boto3
 from urllib import request
 
 url = 'https://news.virginia.edu/sites/default/files/Header_NA_MedSchoolMoney_SS.jpg'
-download_file_name = "Header_NA_MedSchoolMoney_SS.jpg"
+download_file_name = 'Header_NA_MedSchoolMoney_SS.jpg'
 
 def download(url, download_file_name):
     request.urlretrieve(url, download_file_name)
@@ -21,6 +21,8 @@ bucket = 'ds2002-acv7qc'
 local_file = 'Header_NA_MedSchoolMoney_SS.jpg'
 expires_in = 604800
 
+# put image in s3 bucket
+
 resp = s3.put_object(
     Body = local_file,
     Bucket = bucket,
@@ -28,10 +30,14 @@ resp = s3.put_object(
     ACL = 'public-read'
 )
 
+# create URL to view image
+
 response = s3.generate_presigned_url(
     'get_object',
     Params={'Bucket': bucket, 'Key': local_file},
     ExpiresIn=expires_in
 )
+
+# print the temporary URL
 
 print(response)
