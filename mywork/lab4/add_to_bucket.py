@@ -3,8 +3,8 @@
 import boto3
 from urllib import request
 
-url = "https://images.albertsons-media.com/is/image/ABS/184450056?$ng-ecom-pdp-desktop$&defaultImage=Not_Available"
-download_file_name = "C:\\Users\nsilv\ds2002-course\mywork\lab4\onion.jpg"
+url = 'https://news.virginia.edu/sites/default/files/Header_NA_MedSchoolMoney_SS.jpg'
+download_file_name = "Header_NA_MedSchoolMoney_SS.jpg"
 
 def download(url, download_file_name):
     request.urlretrieve(url, download_file_name)
@@ -18,7 +18,8 @@ s3 = boto3.client('s3', region_name="us-east-1")
 # specify bucket name and file
 
 bucket = 'ds2002-acv7qc'
-local_file = 'lab4/onion.jpg'
+local_file = 'Header_NA_MedSchoolMoney_SS.jpg'
+expires_in = 604800
 
 resp = s3.put_object(
     Body = local_file,
@@ -29,5 +30,8 @@ resp = s3.put_object(
 
 response = s3.generate_presigned_url(
     'get_object',
-    Params={'Bucket': bucket, 'Key': object_name},
+    Params={'Bucket': bucket, 'Key': local_file},
     ExpiresIn=expires_in
+)
+
+print(response)
