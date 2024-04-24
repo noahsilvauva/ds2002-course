@@ -1,0 +1,4 @@
+The finally statement serves as a way to close open connections
+and get rid of the memory used by opening a file. Depending on how
+big certain files are, it could be very costly to keep a file open for
+an extended period of time.
